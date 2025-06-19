@@ -52,7 +52,7 @@
             app:layout_constraintVertical_bias="0.708" />
 
         <EditText
-            android:id="@+id/edtEnterDetailsHere"
+            android:id="@+id/edtSongTitles"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -62,17 +62,43 @@
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.425" />
+            app:layout_constraintVertical_bias="0.161" />
 
-        <TextView
-            android:id="@+id/tvEnterDetails"
-            android:layout_width="116dp"
-            android:layout_height="61dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <EditText
+            android:id="@+id/edtArtistName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Name"
+            app:layout_constraintBottom_toTopOf="@+id/edtRating"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.457"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.2" />
+            app:layout_constraintTop_toBottomOf="@+id/edtSongTitles" />
+
+        <EditText
+            android:id="@+id/edtRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Name"
+            app:layout_constraintBottom_toTopOf="@+id/edtComments"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtArtistName" />
+
+        <EditText
+            android:id="@+id/edtComments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Name"
+            app:layout_constraintBottom_toTopOf="@+id/btnNextScreen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtRating" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
