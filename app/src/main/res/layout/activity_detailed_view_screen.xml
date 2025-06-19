@@ -7,6 +7,27 @@
     android:layout_height="match_parent"
     tools:context=".DetailedViewScreen">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/music" />
+
     <Button
         android:id="@+id/btnDisplay"
         android:layout_width="wrap_content"
@@ -14,7 +35,9 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="20dp"
+        android:backgroundTint="#1DE9B6"
         android:text="Display Results "
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/tvResults"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.45"
@@ -28,7 +51,9 @@
         android:layout_height="60dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="20dp"
+        android:backgroundTint="#1DE9B6"
         android:text="Calculate Average"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.864"
@@ -42,7 +67,9 @@
         android:layout_height="60dp"
         android:layout_marginStart="40dp"
         android:layout_marginBottom="20dp"
+        android:backgroundTint="#1DE9B6"
         android:text="Return"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnAverage"
         app:layout_constraintHorizontal_bias="0.219"
@@ -57,10 +84,12 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="120dp"
         android:layout_marginEnd="20dp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

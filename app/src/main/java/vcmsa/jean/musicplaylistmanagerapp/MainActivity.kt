@@ -4,20 +4,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-// import android.widget.TextView // Not used, can be removed
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-// import kotlin.jvm.java // Not used, can be removed
 
 class MainActivity : AppCompatActivity() {
-    // These will store the data for your playlist
-    private val songTitlesList = ArrayList<String>() // Renamed for clarity and made private
-    private val artistNameList = ArrayList<String>() // Renamed for clarity and made private
-    private val ratingList = ArrayList<Int>()      // Renamed for clarity and made private
-    private val commentsList = ArrayList<String>()   // Renamed for clarity and made private
+    // these store the data of the playlist
+    private val songTitlesList = ArrayList<String>()
+    private val artistNameList = ArrayList<String>()
+    private val ratingList = ArrayList<Int>()
+    private val commentsList = ArrayList<String>()
 
     // Declare lateinit properties for your views
     private lateinit var edtSongTitles: EditText
