@@ -1,5 +1,6 @@
 package vcmsa.jean.musicplaylistmanagerapp
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -8,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import android.util.Log as log
 
 class DetailedViewScreen : AppCompatActivity() {
     private lateinit var tvResults: TextView
@@ -15,7 +17,7 @@ class DetailedViewScreen : AppCompatActivity() {
     private lateinit var btnAverage: Button
     private lateinit var btnReturn: Button
 
-    // Keep these as class properties to store the data received from the Intent
+    // these store the data of the playlist
     private val songTitlesList = ArrayList<String>()
     private val artistNameList = ArrayList<String>()
     private val ratingList = ArrayList<Int>()
@@ -31,66 +33,71 @@ class DetailedViewScreen : AppCompatActivity() {
             insets
         }
 
+        //these initialize the views
         tvResults = findViewById(R.id.tvResults)
         btnDisplay = findViewById(R.id.btnDisplay)
         btnAverage = findViewById(R.id.btnAverage)
         btnReturn = findViewById(R.id.btnReturn)
 
-        // Retrieve data from Intent and populate the lists
-        // Using ?: emptyList() is a good safe way to handle potential nulls
+        // retrieve data from the intent on MainActivity
         songTitlesList.addAll(intent.getStringArrayListExtra("songTitles") ?: emptyList())
         artistNameList.addAll(intent.getStringArrayListExtra("artistName") ?: emptyList())
         ratingList.addAll(intent.getIntegerArrayListExtra("rating") ?: emptyList())
         commentsList.addAll(intent.getStringArrayListExtra("comments") ?: emptyList())
 
+        //sets the click listener on the button
         btnDisplay.setOnClickListener {
             displayResults()
+            log.d("button click", "button clicked")
         }
 
+        //sets the click listener on the button
         btnAverage.setOnClickListener {
             calculateAverage()
+            log.d("button click", "button clicked")
         }
 
+        //sets the click listener on the button
         btnReturn.setOnClickListener {
-            // Intent to go back to MainActivity
-            val intent = Intent(this, MainActivity::class.java)
-            // Optional: If you want MainActivity to be a fresh instance and clear others above it
-            // intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            val intent = Intent(this, MainActivity::class.java)//this will return to the main activity
             startActivity(intent)
-            // finish() // Optional: Call finish if you want DetailedViewScreen to be removed from back stack
+            log.d("button click", "button clicked")
         }
-    } // End of onCreate
+    } // end of onCreate
 
-    // Function to display all song details
+    //this will display the results on the screen
+    @SuppressLint("SetTextI18n")
     private fun displayResults() {
         if (songTitlesList.isEmpty()) {
-            tvResults.text = "No songs in the playlist."
+            tvResults.text = "There Is No Data To Display."
             return
         }
 
-        val resultsBuilder = StringBuilder() // More efficient for building strings in a loop
+        val resultsBuilder = StringBuilder() //this will build the results and display them on the screen
         for (i in songTitlesList.indices) {
-            resultsBuilder.append("Song Title: ${songTitlesList[i]}\n")
-            resultsBuilder.append("Artist Name: ${artistNameList[i]}\n")
-            resultsBuilder.append("Rating: ${ratingList[i]}\n")
-            resultsBuilder.append("Comments: ${commentsList.getOrElse(i) { "" }}\n\n") // Added newline for spacing
+            resultsBuilder.append("Song Title: ${songTitlesList[i]}\n") // this will get the song title if there is no song title then it will display an empty string
+            resultsBuilder.append("Artist Name: ${artistNameList[i]}\n") // this will get the artist name if there is no artist name then it will display an empty string
+            resultsBuilder.append("Rating: ${ratingList[i]}\n") // this will get the rating if there is no rating then it will display an empty string
+            resultsBuilder.append("Comments: ${commentsList.getOrElse(i) { "" }}\n\n") // this will get the comments if there is no comments then it will display an empty string
         }
         tvResults.text = resultsBuilder.toString()
+        //this will display the results on the screen
     }
 
-    // Function to calculate and display the average rating
+    // this function will calculate the average of the ratings
+    @SuppressLint("SetTextI18n")
     private fun calculateAverage() {
         if (ratingList.isEmpty()) {
-            tvResults.text = "No ratings available to calculate average."
+            tvResults.text = "There Is No Data To Display."
             return
         }
 
-        var totalRating = 0
-        for (rating in ratingList) {
-            totalRating += rating
+        var totalRating = 0 //this will store the total rating
+        for (rating in ratingList) {//this will get the rating
+            totalRating += rating//this will add the rating to the total rating
         }
-        // Use toDouble() for division to get a floating-point average, then format
+        //this will calculate the average rating and display it on the screen within one decimal place
         val averageRatingValue = if (ratingList.isNotEmpty()) totalRating.toDouble() / ratingList.size else 0.0
-        tvResults.text = "Average Rating: %.1f".format(averageRatingValue) // Format to one decimal place
+        tvResults.text = "Average Rating: %.1f".format(averageRatingValue)
     }
 }

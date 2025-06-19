@@ -9,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import android.util.Log as log
 
 class MainActivity : AppCompatActivity() {
     // these store the data of the playlist
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private val artistNameList = ArrayList<String>()
     private val ratingList = ArrayList<Int>()
     private val commentsList = ArrayList<String>()
+
 
     // these are the views
     private lateinit var edtSongTitles: EditText
@@ -48,6 +50,7 @@ class MainActivity : AppCompatActivity() {
         // sets a click listener on the button
         btnAddToPlaylist.setOnClickListener {
             addSong()
+            log.d("button click", "button clicked")
         }
 
         btnNextScreen.setOnClickListener {
@@ -57,10 +60,13 @@ class MainActivity : AppCompatActivity() {
             intent.putIntegerArrayListExtra("rating", ratingList) //using and int array here for the rating
             intent.putStringArrayListExtra("comments", commentsList)
             startActivity(intent)
+
+            log.d("button click", "button clicked")
         }
 
         btnExitApp.setOnClickListener {
             finishAffinity()
+            log.d("button click", "button clicked")
             //this will close the app
         }
     } // end of onCreate
@@ -78,6 +84,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Enter A Rating Of (1-5)", Toast.LENGTH_SHORT).show()
                 edtRating.requestFocus()
                 return
+
             }
 
             songTitlesList.add(songTitleText)
