@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     private val ratingList = ArrayList<Int>()
     private val commentsList = ArrayList<String>()
 
-    // Declare lateinit properties for your views
+    // these are the views
     private lateinit var edtSongTitles: EditText
     private lateinit var edtArtistName: EditText
     private lateinit var edtRating: EditText
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        // Initialize your lateinit properties here
+        //these initialize the views
         edtSongTitles = findViewById(R.id.edtSongTitles)
         edtArtistName = findViewById(R.id.edtArtistName)
         edtRating = findViewById(R.id.edtRating)
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         btnNextScreen = findViewById(R.id.btnNextScreen)
         btnExitApp = findViewById(R.id.btnExitApp)
 
-        // Set click listeners inside onCreate
+        // sets a click listener on the button
         btnAddToPlaylist.setOnClickListener {
             addSong()
         }
@@ -54,49 +54,50 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, DetailedViewScreen::class.java)
             intent.putStringArrayListExtra("songTitles", songTitlesList)
             intent.putStringArrayListExtra("artistName", artistNameList)
-            intent.putIntegerArrayListExtra("rating", ratingList) // Use putIntegerArrayListExtra for ArrayList<Int>
+            intent.putIntegerArrayListExtra("rating", ratingList) //using and int array here for the rating
             intent.putStringArrayListExtra("comments", commentsList)
             startActivity(intent)
         }
 
         btnExitApp.setOnClickListener {
-            finishAffinity() // Closes all activities in the task
+            finishAffinity()
+            //this will close the app
         }
-    } // End of onCreate
+    } // end of onCreate
 
-    private fun addSong() { // Made private as it's only used within this class
-        val songTitleText = edtSongTitles.text.toString().trim() // Use .trim()
-        val artistNameText = edtArtistName.text.toString().trim() // Use .trim()
-        val ratingText = edtRating.text.toString().trim()       // Use .trim()
-        val commentsText = edtComments.text.toString().trim()     // Use .trim()
+    private fun addSong() { // this function will add the song to the playlist
+        val songTitleText = edtSongTitles.text.toString().trim()
+        val artistNameText = edtArtistName.text.toString().trim()
+        val ratingText = edtRating.text.toString().trim()
+        val commentsText = edtComments.text.toString().trim()  //these will get the text from the edit text
 
-        if (songTitleText.isNotEmpty() && artistNameText.isNotEmpty() && ratingText.isNotEmpty()) {
-            // Validate rating format (should be an integer)
-            val ratingValue = ratingText.toIntOrNull() // Safely convert to Int or null
-            if (ratingValue == null || ratingValue !in 1..5) { // Assuming 1-5 rating
-                Toast.makeText(this, "Please enter a valid rating (1-5)", Toast.LENGTH_SHORT).show()
-                edtRating.requestFocus() // Optionally focus the rating field
-                return // Stop further execution if rating is invalid
+        if (songTitleText.isNotEmpty() && artistNameText.isNotEmpty() && ratingText.isNotEmpty() && commentsText.isNotEmpty()) { // these check if the edit text is empty
+            //here we validate the rating
+            val ratingValue = ratingText.toIntOrNull()
+            if (ratingValue == null || ratingValue !in 1..5) { //if the rating is not between 1 and 5 then it will show an error message
+                Toast.makeText(this, "Enter A Rating Of (1-5)", Toast.LENGTH_SHORT).show()
+                edtRating.requestFocus()
+                return
             }
 
             songTitlesList.add(songTitleText)
             artistNameList.add(artistNameText)
-            ratingList.add(ratingValue) // Add the validated integer rating
-            commentsList.add(commentsText) // Comments can be empty if you allow it
+            ratingList.add(ratingValue) // adds the valid rating to the list
+            commentsList.add(commentsText)
 
-            Toast.makeText(this, "Song added to playlist", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Playlist Updated", Toast.LENGTH_SHORT).show() // this will show a toast message that the playlist has been updated
 
-            edtSongTitles.text.clear()
+            edtSongTitles.text.clear() // these will clear the edit text so that more can be added to the playlist
             edtArtistName.text.clear()
             edtRating.text.clear()
             edtComments.text.clear()
-            edtSongTitles.requestFocus() // Optionally focus the first field for next entry
+            edtSongTitles.requestFocus()
         } else {
-            Toast.makeText(this, "Please enter song title, artist name, and rating", Toast.LENGTH_SHORT).show()
-            // You could add logic here to highlight which specific field is missing
-            if (songTitleText.isEmpty()) edtSongTitles.error = "Required"
-            if (artistNameText.isEmpty()) edtArtistName.error = "Required"
-            if (ratingText.isEmpty()) edtRating.error = "Required"
+            Toast.makeText(this, "Please Enter The Details For All Fields", Toast.LENGTH_SHORT).show()// this will show a toast message that the playlist has not been updated
+            if (songTitleText.isEmpty()) edtSongTitles.error = "Needed"// these will show an error message if the edit text is empty
+            if (artistNameText.isEmpty()) edtArtistName.error = "Needed"
+            if (ratingText.isEmpty()) edtRating.error = "Needed"
+            if (commentsText.isEmpty()) edtComments.error = "Needed"
         }
     }
 }
