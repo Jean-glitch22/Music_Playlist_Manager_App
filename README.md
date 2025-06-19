@@ -12,11 +12,12 @@ This is the code of the second screen where the button "display results" is code
 ![Screenshot 2025-06-19 132849](https://github.com/user-attachments/assets/7a85f8ec-c7ff-4a06-bfa7-9283d22516c3)
 
 These are the screenshots of the two screens taken in android studio. 
+
 ![Screenshot 2025-06-19 133136](https://github.com/user-attachments/assets/5ae79946-897d-4b21-beb9-553a1ae2d2ea)
 ![Screenshot 2025-06-19 133210](https://github.com/user-attachments/assets/407e7bd2-daee-4b08-922a-0b87036e374b)
-
-
 ![Screenshot 2025-06-19 133229](https://github.com/user-attachments/assets/7a6004d7-2ed1-4bfa-bf0a-4d68fb01b244)
 ![Screenshot 2025-06-19 133241](https://github.com/user-attachments/assets/0864565e-7f52-42f5-b59f-6afa8678b128)
 ![Screenshot 2025-06-19 133352](https://github.com/user-attachments/assets/5f9e4b7b-86a1-4e97-b589-cd363dabc0e6)
 ![Screenshot 2025-06-19 133401](https://github.com/user-attachments/assets/254e76fe-6333-4921-a10a-a8a9a74a0f31)
+
+These screenshots are taken in theemulator and showcase the various aspects of the app from how the inputs work to how the average is displayed as well as how the buttons take you back and forth and how multiple inputted data by the user can be saved and displayed.
